@@ -5,3 +5,24 @@
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+
+@section scripts
+{
+    <script>
+
+        window.setInterval(function() {
+            $.ajax({
+                url: "@Url.Action(MVC.Account.Authenticated())",
+                type: "Post",
+                dataType: "json",
+                success: function(data) {
+                    if (!data) {
+                        alert("Someone has logged in using your username and password!");
+                        location.reload();
+                    }
+                }
+            });
+        }, 60000);
+    </script>
+
+}
